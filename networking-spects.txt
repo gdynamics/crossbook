@@ -1,0 +1,40 @@
+	0xx - Generic
+000 - Unknown error				(code, error)
+001 - Connection mismatch			(code)
+
+	1xx - User client, listening 31000
+100 - Request type of client			(code)
+101 - Request type response			(code, 'csengine' or 'chatclient')
+
+	2xx - Crypto-stego engine, connects on 31000
+200 - Request hide message in file		(code, dialogue, path)
+201 - Reponse of hidden message file's path	(code, path)
+205 - Failed to hide in file			(code, error)
+210 - Request to unhide message from file	(code, dialogue, path)
+211 - Response of unhidden message		(code, message)
+215 - Failed to show file			(code, error)
+220 - Add key to engine				(code, dialogue, key)
+221 - Key added					(code)
+222 - Remove key from engine			(code, dialogue)
+223 - Key removed				(code)
+225 - Key could not be added			(code, error)
+226 - Key could not be removed			(code, error)
+
+	3xx - Chat clients, connect on 31000
+300 - Send hidden message file			(code, path)
+301 - File sent					(code)
+305 - File failed to Send			(code, error)
+310 - File received path			(code, dialogue, path)
+315 - Failed to parse incoming file		(code, error)
+
+4xx
+
+5xx
+
+6xx
+
+7xx
+
+8xx
+
+9xx
