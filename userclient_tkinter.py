@@ -18,6 +18,25 @@ class CrossbookGUI:
             else:
                 print('Warning: Option', option, 'is not a valid option. Ignoring')
 
+	# Start GUI
+        self.start_gui(root)
+ 
+	# Event bindings
+        self.dialogs_list.bind('<<ListboxSelect>>', self.load_dialog)
+
+        # Launch crypto-stego engine
+        #startfile('engine.py')
+    
+    def fill_dialogs_test(self):
+        """ Fill the dialogs with some test values.
+        """
+        self.dialogs = {
+            'secret' : [['john', 'hi'], ['dog', 'bark']],
+            'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' : [],
+            'это программа' : [['алекс', 'привет русскоговорящие']]
+        }
+
+    def start_gui(self, root):
         # Initial creation
         self.root = root
         self.root.geometry('640x480')
@@ -51,21 +70,6 @@ class CrossbookGUI:
         for i in range(500):
             self.messages.insert(END, str(i)+'\n')
         self.messages.config(state=DISABLED)
-
-        # Event bindings
-        self.dialogs_list.bind('<<ListboxSelect>>', self.load_dialog)
-
-        # Launch crypto-stego engine
-        #startfile('enc.py')
-    
-    def fill_dialogs_test(self):
-        """ Fill the dialogs with some test values.
-        """
-        self.dialogs = {
-            'secret' : [['john', 'hi'], ['dog', 'bark']],
-            'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' : [],
-            'это программа' : [['алекс', 'привет русскоговорящие']]
-        }
 
     def get_dialog_title(self, dialog_name):
         """ Return the proper title of a dialog given its name and number of unread messages.
