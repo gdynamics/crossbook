@@ -1,5 +1,5 @@
 from tkinter import Tk, Frame, Listbox, Scrollbar, Text, LEFT, RIGHT, TOP, BOTTOM, YES, NO, BOTH, X, Y, END, NORMAL, DISABLED
-from os import startfile
+# from os import startfile
 
 class CrossbookGUI:
     def __init__(self, root, **options):
