@@ -22,19 +22,16 @@ class CrossbookGUI:
 
 	# Start GUI
         self.start_gui(root)
-
-        # Start networking
-        asyncio.run(self.start_server())
  
-	# Event bindings
-        self.dialogs_list.bind('<<ListboxSelect>>', self.load_dialog)
-
         # Launch crypto-stego engine
         #startfile('engine.py')
 
-        # TODO: Debug
-        print('still works')
+	# Event bindings
+        self.dialogs_list.bind('<<ListboxSelect>>', self.load_dialog)
     
+        # Start networking
+        asyncio.run(self.start_server())
+
     def fill_dialogs_test(self):
         """ Fill the dialogs with some test values.
         """
