@@ -9,6 +9,8 @@ class CrossbookGUI:
         self.dialogs = {}
         self.cache = {}
         self.dialog_max_title = 32
+	self.engine = None
+	self.chat_clients = {}
         
         # Apply options
         for option,value in options.items():
