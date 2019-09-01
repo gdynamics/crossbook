@@ -32,7 +32,7 @@ class CrossbookGUI:
         self.dialogs_list.bind('<<ListboxSelect>>', self.load_dialog)
     
         # Start networking
-        asyncio.run(self.start_server())
+        #asyncio.run(self.start_server())
 
     def fill_dialogs_test(self):
         """ Fill the dialogs with some test values.
@@ -125,8 +125,14 @@ class CrossbookGUI:
 	
         # Receive response
         message = json.loads((await reader.read(1024)).decode())
-        addr = writer.get_extra_info('peername')
-        print(f'{addr!r} is a {message!r}')
+        code, client = message[0], message[1]
+        if code == 100:
+            if client == 'csengine':
+                self.engine = [reader, writer]
+                print('added stego engine')
+            else:
+                self.chat_clients[client] = [reader, writer]
+                print(f'added client {client!r}')
 
         # Close the connection
         print('Close connection')
