@@ -122,12 +122,16 @@ class CrossbookGUI:
         # Prompt connector for what client they are
         message = json.dumps([100]).encode()
         writer.write(message)
-
+	
+        # Receive response
         message = json.loads((await reader.read(1024)).decode())
         addr = writer.get_extra_info('peername')
-        print(f'Received {message!r} from {addr!r}')
+        print(f'{addr!r} is a {message!r}')
+
+        # Close the connection
         print('Close connection')
         writer.close()
+        
 
 def main():
     # Initialization
