@@ -1,5 +1,7 @@
 from tkinter import Tk, Frame, Listbox, Scrollbar, Text, LEFT, RIGHT, TOP, BOTTOM, YES, NO, BOTH, X, Y, END, NORMAL, DISABLED
 # from os import startfile
+import asyncio
+import json
 
 class CrossbookGUI:
     def __init__(self, root, **options):
@@ -20,12 +22,18 @@ class CrossbookGUI:
 
 	# Start GUI
         self.start_gui(root)
+
+        # Start networking
+        asyncio.run(self.start_server())
  
 	# Event bindings
         self.dialogs_list.bind('<<ListboxSelect>>', self.load_dialog)
 
         # Launch crypto-stego engine
         #startfile('engine.py')
+
+        # TODO: Debug
+        print('still works')
     
     def fill_dialogs_test(self):
         """ Fill the dialogs with some test values.
@@ -103,6 +111,24 @@ class CrossbookGUI:
             self.messages.insert(END, self.cache[name])
         self.messages.config(state=DISABLED)
 
+    async def start_server(self):
+        server = await asyncio.start_server(self.handle_connections, '127.0.0.1', 31000)
+        addr = server.sockets[0].getsockname()
+        print(f'Serving on {addr!r}')
+
+        async with server:
+            await server.serve_forever()
+
+    async def handle_connections(self, reader, writer):
+        # Prompt connector for what client they are
+        message = json.dumps([100]).encode()
+        writer.write(message)
+
+        message = json.loads((await reader.read(1024)).decode())
+        addr = writer.get_extra_info('peername')
+        print(f'Received {message!r} from {addr!r}')
+        print('Close connection')
+        writer.close()
 
 def main():
     # Initialization
