@@ -42,7 +42,7 @@ def event_processor(event, client):
 
 def main():
     # Intitialization
-    slack_token = 'xoxb-602303763332-603785151702-XVoHKLGMJUTUlndndhgzB1UO'
+    slack_token = 'xoxb-602303763332-603785151702-XVoHKLGMJUTUlndndhgzB1UO' # This token is disabled, don't even try it man!
     sc = SlackClient(slack_token)
 
     # Connecting to Slack
