@@ -1,0 +1,23 @@
+{
+  "name": "crossbook",
+  "version": "1.0.0",
+  "description": "",
+  "main": "userclient_electron.js",
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^9.1.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gdynamics/crossbook.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gdynamics/crossbook/issues"
+  },
+  "homepage": "https://github.com/gdynamics/crossbook#readme"
+}
